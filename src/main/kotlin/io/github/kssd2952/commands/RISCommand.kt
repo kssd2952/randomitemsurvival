@@ -1,9 +1,14 @@
 package io.github.kssd2952.commands
 
 import io.github.kssd2952.Main
+import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.format.NamedTextColor
+import org.bukkit.Bukkit
+import org.bukkit.Material
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
+import kotlin.random.Random
 
 class RISCommand : CommandExecutor {
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
@@ -13,7 +18,14 @@ class RISCommand : CommandExecutor {
 
         when (args[0].lowercase()) {
             "start" -> {
+                val materialList = Material.entries.filter { it.isLegacy.not() } // 블록 제외 및 레거시 아이템 제외
+                for (player in Bukkit.getOnlinePlayers()) {
+                    Main.itemList[player.name] = materialList[Random.nextInt(materialList.size)]
+                    player.sendMessage(Component.text("랜덤 아이템 빨리찾기 게임이 시작되었습니다!", NamedTextColor.GREEN))
+                }
 
+                if(Main.friend) {
+                }
             }
 
             "stop" -> {
