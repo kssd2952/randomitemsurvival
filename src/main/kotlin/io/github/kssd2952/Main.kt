@@ -8,6 +8,7 @@ class Main : JavaPlugin() {
     companion object {
         val itemList = mutableMapOf<String, Material>()
         var friend = true
+        var started = false
     }
 
     override fun onEnable() {

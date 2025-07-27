@@ -18,18 +18,43 @@ class RISCommand : CommandExecutor {
 
         when (args[0].lowercase()) {
             "start" -> {
+                if(Bukkit.getOnlinePlayers().isEmpty()) {
+                    sender.sendMessage("플레이어가 없습니다")
+                    return true
+                }
+
+                Main.started = true
+
                 val materialList = Material.entries.filter { it.isLegacy.not() } // 블록 제외 및 레거시 아이템 제외
                 for (player in Bukkit.getOnlinePlayers()) {
                     Main.itemList[player.name] = materialList[Random.nextInt(materialList.size)]
                     player.sendMessage(Component.text("랜덤 아이템 빨리찾기 게임이 시작되었습니다!", NamedTextColor.GREEN))
                 }
 
-                if(Main.friend) {
+                if (Main.friend) {
+                    for (player in Bukkit.getOnlinePlayers()) {
+                        val matMessage = Component.text(
+                            "플레이어 ${player.name}의 아이템은 ${Main.itemList[player.name]?.name}입니다!", NamedTextColor.YELLOW
+                        )
+
+                        for (sendPlayer in Bukkit.getOnlinePlayers()) {
+                            sendPlayer.sendMessage(matMessage)
+                        }
+                    }
                 }
             }
 
             "stop" -> {
+                if(Bukkit.getOnlinePlayers().isEmpty()) {
+                    sender.sendMessage("플레이어가 없습니다")
+                    return true
+                }
 
+                for(player in Bukkit.getOnlinePlayers()) {
+                    player.sendMessage(Component.text("게임이 종료되었습니다!", NamedTextColor.GREEN))
+                }
+
+                Main.started = false
             }
 
             "friend" -> {
