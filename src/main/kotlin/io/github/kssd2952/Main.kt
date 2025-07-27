@@ -7,6 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin
 class Main : JavaPlugin() {
     companion object {
         val itemList = mutableMapOf<String, Material>()
+        var friend = true
     }
 
     override fun onEnable() {
