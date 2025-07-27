@@ -87,6 +87,8 @@ class RISCommand : CommandExecutor {
             }
 
             //TODO: 플레이어가 죽었을 때 게임에서 탈락하는 옵션 추가
+            //TODO: 특정 플레이어의 아이템만 리롤하는 커맨드 추가
+            //TODO: 가능하다면, 야생에서 가능한 아이템만 나올 수 있도록
         }
         return true
     }
