@@ -85,6 +85,8 @@ class RISCommand : CommandExecutor {
                     sender.sendMessage("잘못된 인자입니다")
                 }
             }
+
+            //TODO: 플레이어가 죽었을 때 게임에서 탈락하는 옵션 추가
         }
         return true
     }
