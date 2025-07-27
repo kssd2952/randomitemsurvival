@@ -7,6 +7,7 @@ import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Bukkit
 import org.bukkit.GameMode
 import org.bukkit.Material
+import org.bukkit.Sound
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
@@ -34,6 +35,7 @@ class RISCommand : CommandExecutor {
                     player.sendMessage(Component.text("랜덤 아이템 빨리찾기 게임이 시작되었습니다!", NamedTextColor.GREEN))
 
                     player.gameMode = GameMode.SURVIVAL
+                    player.playSound(player.location, Sound.BLOCK_TRIAL_SPAWNER_OMINOUS_ACTIVATE, 1f, 1f)
                 }
 
                 for (player in Bukkit.getOnlinePlayers()) {

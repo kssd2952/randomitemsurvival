@@ -6,6 +6,7 @@ import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Bukkit
 import org.bukkit.GameMode
+import org.bukkit.Sound
 import org.bukkit.entity.Player
 
 class GameManager {
@@ -24,8 +25,16 @@ class GameManager {
 
             if (players == 0) {
                 gameStop()
+
+                for (player in Bukkit.getOnlinePlayers()) {
+                    player.playSound(player.location, Sound.ITEM_MACE_SMASH_GROUND_HEAVY, 1f, 1f)
+                }
             } else {
                 players--
+
+                for (player in Bukkit.getOnlinePlayers()) {
+                    player.playSound(player.location, Sound.BLOCK_TRIAL_SPAWNER_OPEN_SHUTTER, 1f, 2f)
+                }
             }
         }
 
