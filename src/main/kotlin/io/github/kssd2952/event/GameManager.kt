@@ -23,15 +23,10 @@ class GameManager {
 
             Main.itemList.remove(player.name)
 
+            players--
             if (players == 0) {
                 gameStop()
-
-                for (player in Bukkit.getOnlinePlayers()) {
-                    player.playSound(player.location, Sound.ITEM_MACE_SMASH_GROUND_HEAVY, 1f, 1f)
-                }
             } else {
-                players--
-
                 for (player in Bukkit.getOnlinePlayers()) {
                     player.playSound(player.location, Sound.BLOCK_TRIAL_SPAWNER_OPEN_SHUTTER, 1f, 2f)
                 }
@@ -41,6 +36,7 @@ class GameManager {
         fun gameStop() {
             for (player in Bukkit.getOnlinePlayers()) {
                 player.sendMessage(Component.text("게임이 종료되었습니다!", NamedTextColor.GREEN))
+                player.playSound(player.location, Sound.ITEM_MACE_SMASH_GROUND_HEAVY, 1f, 1f)
             }
 
             Main.itemList.clear()

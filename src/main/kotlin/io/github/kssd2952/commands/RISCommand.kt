@@ -66,10 +66,6 @@ class RISCommand : CommandExecutor {
                     return true
                 }
 
-                for (player in Bukkit.getOnlinePlayers()) {
-                    player.sendMessage(Component.text("게임이 종료되었습니다!", NamedTextColor.GREEN))
-                }
-
                 GameManager.gameStop()
             }
 
