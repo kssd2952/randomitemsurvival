@@ -11,6 +11,7 @@ class Main : JavaPlugin() {
         val itemList = mutableMapOf<String, Material>()
         var friend = true
         var started = false
+        var players = 0
     }
 
     override fun onEnable() {

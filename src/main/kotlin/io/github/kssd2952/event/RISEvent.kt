@@ -12,6 +12,7 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityPickupItemEvent
 import org.bukkit.event.player.PlayerItemConsumeEvent
+import io.github.kssd2952.event.GameManager.Companion.playerFinished
 
 class RISEvent : Listener {
     @EventHandler
@@ -23,16 +24,7 @@ class RISEvent : Listener {
         val item = event.item.itemStack
 
         if (item.type == Main.itemList[player.name]) {
-            player.gameMode = GameMode.SPECTATOR
-
-            val matMessage = Component.text(
-                "플레이어 ${player.name}이 지정 아이템 ${Main.itemList[player.name]?.name}을 획득했습니다!", NamedTextColor.BLUE
-            )
-            for (sendPlayer in Bukkit.getOnlinePlayers()) {
-                sendPlayer.sendMessage(matMessage)
-            }
-
-            Main.itemList.remove(player.name)
+            playerFinished(player)
         }
     }
 
