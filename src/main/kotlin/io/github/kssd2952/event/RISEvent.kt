@@ -15,7 +15,7 @@ import org.bukkit.event.player.PlayerItemConsumeEvent
 
 class RISEvent : Listener {
     @EventHandler
-    fun e(event: EntityPickupItemEvent) {
+    fun entityPickupItemEvent(event: EntityPickupItemEvent) {
         if (event.entity !is Player) return
         if (!Main.started) return
 
@@ -35,4 +35,6 @@ class RISEvent : Listener {
             Main.itemList.remove(player.name)
         }
     }
+
+    //TODO: 아이템을 다른 방법으로 주웠을 때도 작동하도록 이벤트 추가하기
 }
